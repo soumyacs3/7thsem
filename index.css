@@ -1,0 +1,30 @@
+body{
+    background-color:mediumaquamarine
+}
+img{
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+  }
+
+
+  .subject1 {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 100px;
+    height: 100px;
+    background-color: pink;
+  }
+  
+  .subject2 {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+  }
+  
+  
+  

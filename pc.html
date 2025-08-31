@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC PROGRAMS</title>
+     <link rel="icon" type="image/png" href="./bjp.jpeg">
+    <style>
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        .headline {
+            font-size: 36px;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .footer img{
+            width: 50px; /* Adjust size */
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="headline">PC LAB </h1>
+    <h4>CLICK ON PROGRAM BUTTON BELOW AND CODE WILL BE COPIED</h4>
+    <button onclick="copyText('pc1.txt')">PROGRAM 1</button>
+    <button onclick="copyText('pc2.txt')">PROGRAM 2</button>
+    <button onclick="copyText('pc3.txt')">PROGRAM 3</button>
+    <button onclick="copyText('pc4.txt')">PROGRAM 4</button>
+    <button onclick="copyText('pc5.txt')">PROGRAM 5</button>
+    <button onclick="copyText('pc6.txt')">PROGRAM 6</button>
+    <button onclick="copyText('pc7.txt')">PROGRAM 7</button>
+    <button onclick="copyText('pc8.txt')">PROGRAM 8</button>
+    <button onclick="copyText('pc9.txt')">PROGRAM 9</button>
+    <button onclick="copyText('pc10.txt')">PROGRAM 10</button>
+    
+
+
+    <script>
+    function copyText(fileName) {
+        fetch(fileName)  // Fetch the text file
+            .then(response => response.text())
+            .then(text => {
+                // Step 1: Copy text
+                navigator.clipboard.writeText(text).then(() => {
+                    alert(fileName + ' CC steps copied');
+                }).catch(err => {
+                    console.error('Error copying text: ', err);
+                });
+
+                // Step 2: Try to download matching image
+                const base = fileName.replace(/\.[^/.]+$/, ""); // remove extension
+                const extensions = [".png", ".jpg", ".jpeg", ".webp"];
+                tryDownloadImage(base, extensions);
+            })
+            .catch(err => {
+                console.error('Error loading file: ', err);
+                alert('Failed to load file ' + fileName);
+            });
+    }
+
+    function tryDownloadImage(base, extensions) {
+        for (let ext of extensions) {
+            let imgFile = base + ext;
+            fetch(imgFile, { method: "HEAD" }) // check if file exists
+                .then(response => {
+                    if (response.ok) {
+                        downloadImage(imgFile);
+                        throw "found"; // stop checking further
+                    }
+                })
+                .catch(err => {
+                    if (err !== "found") console.log("Tried " + base + ext);
+                });
+        }
+    }
+
+    function downloadImage(fileName) {
+        const link = document.createElement("a");
+        link.href = fileName;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+
+</body>
+
+     <footer class="footer">
+   
+    <p>&copy; Soumya B</p>
+</footer>
+</html>

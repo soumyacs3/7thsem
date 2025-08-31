@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>localhost:8080</title>
+    <link rel="icon" type="image/png" href="./bjp.jpeg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+           background-color: #f4f4f4;
+        }
+        .headline {
+            font-size: 36px;
+            margin: 20px 0;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            justify-content: center; 
+            gap: 20px;
+            padding: 20px;
+        }
+        .image-box {
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+        .image-box:hover {
+            transform: scale(1.05);
+        }
+        .image-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .footer img{
+            width: 50px; 
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="headline">LAB PROGRAMS</h1>
+    <h4>click on images below to explore subjects</h4>
+    <div class="container">
+        <a href="./iot.html" class="image-box">
+            <img src="./iot.jpg" alt="Image 1">
+        </a>
+        <a href="./pc.html" class="image-box">
+            <img src="./pc.jpg" alt="Image 2">
+        
+    </div>
+</body>
+
+    <footer class="footer">
+   
+    <p>&copy; Soumya B</p>
+</footer>
+</html>
+

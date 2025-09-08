@@ -1,0 +1,39 @@
+#include &lt;mpi.h&gt;
+#include &lt;stdio.h&gt;
+int main(int argc, char** argv) {
+int rank, size;
+int value;
+int sum_result, prod_result, max_result, min_result;
+int all_sum, all_prod, all_max, all_min;
+// Initialize MPI
+MPI_Init(&amp;argc, &amp;argv);
+// Get rank and size
+MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);
+MPI_Comm_size(MPI_COMM_WORLD, &amp;size);
+// Each process sets its value
+value = rank + 1; // Example: rank 0 = 1, rank 1 = 2, etc.
+printf(&quot;Process %d has value %d\n&quot;, rank, value);
+// ---------- MPI_Reduce (result only at root, rank 0) ----------
+MPI_Reduce(&amp;value, &amp;sum_result, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+MPI_Reduce(&amp;value, &amp;prod_result, 1, MPI_INT, MPI_PROD, 0, MPI_COMM_WORLD);
+MPI_Reduce(&amp;value, &amp;max_result, 1, MPI_INT, MPI_MAX, 0, MPI_COMM_WORLD);
+MPI_Reduce(&amp;value, &amp;min_result, 1, MPI_INT, MPI_MIN, 0, MPI_COMM_WORLD);
+if (rank == 0) {
+printf(&quot;\n--- Results using MPI_Reduce (only on root) ---\n&quot;);
+printf(&quot;Sum = %d\n&quot;, sum_result);
+printf(&quot;Prod = %d\n&quot;, prod_result);
+printf(&quot;Max = %d\n&quot;, max_result);
+printf(&quot;Min = %d\n&quot;, min_result);
+}
+
+// ---------- MPI_Allreduce (result sent to all processes) ----------
+MPI_Allreduce(&amp;value, &amp;all_sum, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
+MPI_Allreduce(&amp;value, &amp;all_prod, 1, MPI_INT, MPI_PROD, MPI_COMM_WORLD);
+MPI_Allreduce(&amp;value, &amp;all_max, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
+MPI_Allreduce(&amp;value, &amp;all_min, 1, MPI_INT, MPI_MIN, MPI_COMM_WORLD);
+printf(&quot;Process %d - AllReduce: Sum=%d Prod=%d Max=%d Min=%d\n&quot;,
+rank, all_sum, all_prod, all_max, all_min);
+// Finalize
+MPI_Finalize();
+return 0;
+}

@@ -1,0 +1,31 @@
+#include &lt;stdio.h&gt;
+#include &lt;omp.h&gt;
+// Recursive Fibonacci with OpenMP Tasks
+int fib_task(int n) {
+int x, y;
+if (n &lt; 2)
+return n;
+#pragma omp task shared(x)
+x = fib_task(n - 1);
+#pragma omp task shared(y)
+y = fib_task(n - 2);
+#pragma omp taskwait
+return x + y;
+}
+int main() {
+int n;
+printf(&quot;Enter the number of Fibonacci terms: &quot;);
+scanf(&quot;%d&quot;, &amp;n);
+printf(&quot;Fibonacci series:\n&quot;);
+#pragma omp parallel
+{
+#pragma omp single
+{
+for (int i = 0; i &lt; n; i++) {
+int result = fib_task(i);
+printf(&quot;fib(%d) = %d\n&quot;, i, result);
+}
+}
+}
+return 0;
+}

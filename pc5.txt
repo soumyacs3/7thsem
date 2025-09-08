@@ -1,8 +1,3 @@
-STEP1: Open terminal
-Type
-nano sr.c
-type code as in below
-// sr.c
 #include &lt;mpi.h&gt;
 #include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
@@ -32,8 +27,3 @@ printf(&quot;Process %d received message: %s\n&quot;, rank, recv_buf);
 MPI_Finalize();
 return 0;
 }
-
-Now For Compilation
-mpicc sr.c -o sr
-For execution
-mpirun –oversubscribe --np 6 ./sr

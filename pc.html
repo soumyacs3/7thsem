@@ -56,7 +56,7 @@
             .then(text => {
                 // Step 1: Copy text
                 navigator.clipboard.writeText(text).then(() => {
-                    alert(fileName + ' CC steps copied');
+                    alert(fileName + ' copied');
                 }).catch(err => {
                     console.error('Error copying text: ', err);
                 });

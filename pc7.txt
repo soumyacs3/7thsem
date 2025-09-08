@@ -1,0 +1,23 @@
+// broadcast.c
+#include &lt;mpi.h&gt;
+#include &lt;stdio.h&gt;
+int main(int argc, char** argv) {
+int rank, size;
+int number;
+// Initialize MPI environment
+MPI_Init(&amp;argc, &amp;argv);
+// Get current process rank and total number of processes
+MPI_Comm_rank(MPI_COMM_WORLD, &amp;rank);
+MPI_Comm_size(MPI_COMM_WORLD, &amp;size);
+if (rank == 0) {
+number = 42; // The value to be broadcasted
+printf(&quot;Process 0 is broadcasting number %d\n&quot;, number);
+}
+// Broadcast the value of `number` from process 0 to all others
+MPI_Bcast(&amp;number, 1, MPI_INT, 0, MPI_COMM_WORLD);
+// All processes print the received number
+printf(&quot;Process %d received number %d\n&quot;, rank, number);
+// Finalize MPI
+MPI_Finalize();
+return 0;
+}

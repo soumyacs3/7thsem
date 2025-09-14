@@ -1,4 +1,4 @@
-const int sensorpin = A0;
+Drconst int sensorpin = A0;
 const int sensorpower = 8;
 const int LED1 = 2;
 const int LED2 = 3;
@@ -47,4 +47,4 @@ digitalWrite(LED3,LOW);
 
 delay(delayTime);
 }
-//Link:https://www.tinkercad.com/things/kuOMnIRpVBH-p5?sharecode=4TpeWBi4Ji4Fe_u75mi67AMmE6zgs97uuYxUuop7DkM
+//Link:https://www.tinkercad.com/things/gjzAG5b2TTe-p6?sharecode=FMO5HWi8eVa7NEXpgXmKpC7rJj4rbT_djXe3PwX2CGI

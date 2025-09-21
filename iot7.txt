@@ -1,0 +1,25 @@
+/***************  SENDER CODE  ****************/
+char mystr[10] = "Hello";
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  Serial.write(mystr, 5);
+  delay(1000);
+}
+
+/***************  RECEIVER CODE  ****************/
+char mystr[10];
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  Serial.readBytes(mystr, 5);
+  mystr[5] = '\0';
+  Serial.println(mystr);
+  delay(1000);
+}

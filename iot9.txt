@@ -1,0 +1,67 @@
+#include <LiquidCrystal.h>
+
+#define RS 7
+#define E 6
+#define D4 5
+#define D5 4
+#define D6 3
+#define D7 2
+
+LiquidCrystal lcd(RS, E, D4, D5, D6, D7);
+
+byte degree[8] = {
+  7, 5, 7, 0, 0, 0, 0, 0
+};
+
+#define sensorTMP A0
+String msg;
+
+void setup() {
+  lcd.begin(16, 2);
+  lcd.createChar(0, degree);
+  lcd.clear();
+  lcd.print("Temperature");
+  delay(2000);
+  delline(1);
+  Serial.begin(9600);
+}
+
+void delline(int line) {
+  lcd.setCursor(0, line);
+  lcd.print("                ");
+  lcd.setCursor(0, line);
+}
+
+void Temperature(int v) {
+  msg = "";
+  if (v >= 56 && v <= 125) {
+    msg = "HOT";
+  } else if (v >= 40 && v <= 55) {
+    msg = "WARM";
+  } else if (v >= 25 && v <= 39) {
+    msg = "NORMAL";
+  } else if (v >= 10 && v <= 24) {
+    msg = "COOL";
+  } else if (v >= 0 && v <= 9) {
+    msg = "COLD";
+  } else if (v >= -40 && v <= -1) {
+    msg = "FREEZE";
+  }
+}
+
+void loop() {
+  int raw = analogRead(sensorTMP);
+  float voltage = raw * (5.0 / 1023.0);
+  float C = (voltage - 0.5) * 100.0;
+  Temperature((int)C);
+  delline(1);
+  lcd.print(C);
+  lcd.write(byte(0));
+  lcd.print("C ");
+  lcd.print(msg);
+  Serial.print("Temp: ");
+  Serial.print(C);
+  Serial.print(" C -> ");
+  Serial.println(msg);
+  delay(1000);
+}

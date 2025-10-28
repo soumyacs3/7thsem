@@ -26,3 +26,11 @@ int main(int argc, char** argv) {
     MPI_Finalize();
     return 0;
 }
+
+
+
+
+Now For Compilation
+mpicc sr.c -o sr
+For execution
+mpirun –oversubscribe --np 6 ./sr

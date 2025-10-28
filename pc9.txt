@@ -37,3 +37,10 @@ rank, all_sum, all_prod, all_max, all_min);
 MPI_Finalize();
 return 0;
 }
+
+
+
+Now For Compilation
+mpicc pg9.c -o pg9
+For execution
+mpirun --np 2 ./pg9

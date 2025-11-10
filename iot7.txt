@@ -23,3 +23,6 @@ void loop() {
   Serial.println(mystr);
   delay(1000);
 }
+
+
+https://www.tinkercad.com/things/jMP3R78XmzG-pgrmm-7

@@ -19,3 +19,6 @@ void loop() {
   lcd.setCursor(6, 1);
   lcd.print(ph);
 }
+
+
+https://www.tinkercad.com/things/4Hqa2G1SHtz-pgrmm-10?sharecode=6T4-uxkt2vHSFQRUKSMcyaqiiAFcugiN5wCC_wpQ1eY

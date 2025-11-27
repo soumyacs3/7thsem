@@ -1,3 +1,12 @@
+step 1:sudo apt update
+step 2:password for atin
+step 3:Sudo apt install openmpi-bin openmpi-common
+libopenmpi-dev
+step 4: gedit p5.c
+step5:mpicc p5.c -o p5
+step6:mpirun -oversubscribe  --np 6./p5
+
+
 #include &lt;mpi.h&gt;
 #include &lt;stdio.h&gt;
 int main(int argc, char** argv) {
@@ -48,4 +57,5 @@ return 0;
 Now For Compilation
 mpicc sg.c -o sg
 For execution
+
 mpirun –oversubscribe --np 4 ./sg
